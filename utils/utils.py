@@ -56,11 +56,15 @@ def get_comments_by_post_id(post_id: int, database: list = get_comments_all()):
 	return output_data
 
 
-def search_for_posts(query):
+def search_for_posts(query: str, database: list = get_posts_all()):
 	"""
 	Возвращает список постов по ключевому слову.
 	"""
-	pass
+	output_data = []
+	for line in database:
+		if query.lower() in line["content"].lower().strip().split():
+			output_data.append(line)
+	return output_data
 
 
 def get_post_by_pk(pk: int, database: list = get_posts_all()):
