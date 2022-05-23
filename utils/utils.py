@@ -1,5 +1,5 @@
 from flask import json, abort
-from re import findall
+from re import findall, sub
 from json import JSONDecodeError
 
 URL_TO_DATA = "data/data.json"
@@ -47,7 +47,8 @@ def get_posts_by_user(user_name: str, database: list = get_posts_all()):
 			output_data.append(line)
 			user_not_in_database = False
 	if user_not_in_database:
-		raise abort(400)
+		# raise ValueError() # По курсовой тут райз - он останавливает сервер, реализовал через abort на 404 Page Not Found
+		abort(404)
 	return output_data
 
 
@@ -64,7 +65,8 @@ def get_comments_by_post_id(post_id: int, database: list = get_comments_all()):
 			output_data.append(line)
 			post_id_not_in_database = False
 	if post_id_not_in_database:
-		raise abort(400)
+		# raise ValueError() # По курсовой тут райз - он останавливает сервер, реализовал через abort на 404 Page Not Found
+		abort(404)
 	return output_data
 
 
@@ -87,3 +89,10 @@ def get_post_by_pk(pk: int, database: list = get_posts_all()):
 		if line["pk"] == pk:
 			return line
 	raise abort(400)
+
+
+def re_subbing(content: str) -> str:
+    hashtags = findall(r"#\w+\s", content)
+    for item in hashtags:
+         content = sub(item, r'<a href="/tag/' + item[1:-1:] +r'>' + item[:-1:] + r'</a>', content)
+    return content
