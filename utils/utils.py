@@ -1,5 +1,6 @@
-from flask import json
+from flask import json, abort
 from re import findall
+from json import JSONDecodeError
 
 URL_TO_DATA = "data/data.json"
 URL_TO_COMMENTS = "data/comments.json"
@@ -10,8 +11,13 @@ def get_comments_all(url: str = URL_TO_COMMENTS):
 	Возвращает комментарии - RAW база.
 	:param url ссылка на БД
 	"""
-	with open(url, "r", encoding="UTF-8") as f:
-		return json.load(f)
+	try:
+		with open(url, "r", encoding="UTF-8") as f:
+			return json.load(f)
+	except JSONDecodeError:
+		return abort(400)
+	except FileNotFoundError:
+		return abort(400)
 
 
 def get_posts_all(url: str = URL_TO_DATA):
@@ -19,8 +25,13 @@ def get_posts_all(url: str = URL_TO_DATA):
 	Возвращает посты - RAW база.
 	:param url ссылка на БД
 	"""
-	with open(url, "r", encoding="UTF-8") as f:
-		return json.load(f)
+	try:
+		with open(url, "r", encoding="UTF-8") as f:
+			return json.load(f)
+	except JSONDecodeError:
+		return abort(400)
+	except FileNotFoundError:
+		return abort(400)
 
 
 def get_posts_by_user(user_name: str, database: list = get_posts_all()):
@@ -36,7 +47,7 @@ def get_posts_by_user(user_name: str, database: list = get_posts_all()):
 			output_data.append(line)
 			user_not_in_database = False
 	if user_not_in_database:
-		raise ValueError("User not in DataBase")
+		raise abort(400)
 	return output_data
 
 
@@ -53,7 +64,7 @@ def get_comments_by_post_id(post_id: int, database: list = get_comments_all()):
 			output_data.append(line)
 			post_id_not_in_database = False
 	if post_id_not_in_database:
-		raise ValueError("PostId not in DataBase")
+		raise abort(400)
 	return output_data
 
 
@@ -75,4 +86,4 @@ def get_post_by_pk(pk: int, database: list = get_posts_all()):
 	for line in database:
 		if line["pk"] == pk:
 			return line
-	raise ValueError("PostPK not in DataBase")
+	raise abort(400)
