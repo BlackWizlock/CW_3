@@ -1,4 +1,5 @@
 from flask import json
+from re import findall
 
 URL_TO_DATA = "data/data.json"
 URL_TO_COMMENTS = "data/comments.json"
@@ -62,7 +63,7 @@ def search_for_posts(query: str, database: list = get_posts_all()):
 	"""
 	output_data = []
 	for line in database:
-		if query.lower() in line["content"].lower().strip().split():
+		if query.lower() in findall(r"\w+", line["content"].lower()):
 			output_data.append(line)
 	return output_data
 

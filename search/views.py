@@ -8,7 +8,7 @@ search_blueprint = Blueprint("search", __name__, template_folder="templates")
 def search_page():
 	s = request.args.get("s")
 	if s:
-		return render_template("search_result.html", search_request=search_for_posts(s))
+		return render_template("search_result.html", search_request=search_for_posts(s)[:9])
 	return render_template("search.html")
 
 

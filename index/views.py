@@ -3,9 +3,8 @@ from utils.utils import get_posts_all
 
 index_blueprint = Blueprint("index", __name__, template_folder="templates")
 
-DATABASE_POSTS = get_posts_all()
-
 
 @index_blueprint.route("/")
 def index_page():
-	return render_template("index.html", database=DATABASE_POSTS)
+	database = get_posts_all()  # обновление прогрузки базы тк база могла обновиться
+	return render_template("index.html", database=database)
