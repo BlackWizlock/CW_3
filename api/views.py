@@ -10,7 +10,7 @@ formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 handler.setFormatter(formatter)
 logger_mine.addHandler(handler)
 
-api_blueprint = Blueprint("api", __name__)
+api_blueprint = Blueprint("api", __name__, template_folder="templates")
 
 
 @api_blueprint.route('/posts')
