@@ -94,5 +94,5 @@ def get_post_by_pk(pk: int, database: list = get_posts_all()):
 def re_subbing(content: str) -> str:
     hashtags = findall(r"#\w+\s", content)
     for item in hashtags:
-        content = sub(item, f'<a href="/tag/{item[1:-1]}">{item[:-1]}</a>', content)
+        content = sub(item, f'<a href="/tag/{item[1:-1]}" class="item__tag">{item}</a>', content)
     return content

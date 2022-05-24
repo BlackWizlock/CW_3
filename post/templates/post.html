@@ -42,7 +42,7 @@
             </a>
             <div class="item__descr">
                 <p class="item__text">
-                    {{ content }}
+                    {{ content|safe }}
                 </p>
             </div>
             <div class="item__bottom">
@@ -55,9 +55,9 @@
                 </div>
                 <div class="item__comments">
                     {% for item in comments %}
-                    <p class="item__comment">
-                        <b>{{ item.commenter_name }}</b> {{ item.comment }}
-                    </p>
+                        <p class="item__comment">
+                            <b>{{ item.commenter_name }}</b> {{ item.comment }}
+                        </p>
                     {% endfor %}
                 </div>
             </div>
