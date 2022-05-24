@@ -10,9 +10,9 @@ from bookmarks.views import bookmarks_blueprint
 
 app = Flask(__name__)
 
-app.config['JSON_AS_ASCII'] = False
+app.config["JSON_AS_ASCII"] = False
 
-app.register_blueprint(index_blueprint, url_prefix="/")  # Шаг 1 - реализовать ленту
+app.register_blueprint(index_blueprint, url_prefix="/")
 app.register_blueprint(user_blueprint, url_prefix="/user/")
 app.register_blueprint(tag_blueprint, url_prefix="/tag/")
 app.register_blueprint(search_blueprint, url_prefix="/search/")
@@ -22,6 +22,7 @@ app.register_blueprint(api_blueprint, url_prefix="/api/")
 
 
 # Обработка ошибок
+
 
 @app.errorhandler(404)
 @post_blueprint.errorhandler(404)

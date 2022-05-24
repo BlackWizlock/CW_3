@@ -22,7 +22,7 @@
         <a href="/bookmarks" class="header__bookmark-btn">
             <img src="../../static/img/bookmark.png" alt="" class="header__bookmark-icon" width="28">
 
-        <span class="header__bookmark-counter">3</span></a>
+        <span class="header__bookmark-counter">{{bookmarks}}</span></a>
     </div>
 </header>
 <main class="container">
@@ -49,9 +49,9 @@
             </div>
             <div class="item__post-bottom">
                 <a href="/post/{{ item.pk }}" class="item__btn-more">Подробнее</a>
-                <button type="button" class="item__bookmark-btn">
+                <a href="/bookmarks/add/{{item.pk}}" type="button" class="item__bookmark-btn">
                     <img src="../../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-                </button>
+                </a>
             </div>
         </div>
         {% endfor %}

@@ -13,8 +13,8 @@ logger_mine.addHandler(handler)
 api_blueprint = Blueprint("api", __name__, template_folder="templates")
 
 
-@api_blueprint.route('/posts')
-@api_blueprint.route('/posts/<int:post_id>')
+@api_blueprint.route("/posts")
+@api_blueprint.route("/posts/<int:post_id>")
 def api(post_id=None):
     if post_id:
         logger_mine.info(f"Запрос /api/posts/{post_id}")
