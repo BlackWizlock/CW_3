@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKYPROGRAM</title>
-    <link href="../../static/css/styles.min.css" rel="stylesheet">
+    <link href="./static/css/styles.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -17,10 +17,10 @@
             </svg>
         </a>
         <a href="/search" class="header__search-btn">
-            <img src="../../static/img/search.png" alt="" class="header__search-icon" width="28">
+            <img src="./static/img/search.png" alt="" class="header__search-icon" width="28">
         </a>
         <a href="/bookmarks" class="header__bookmark-btn">
-            <img src="../../static/img/bookmark.png" alt="" class="header__bookmark-icon" width="28">
+            <img src="./static/img/bookmark.png" alt="" class="header__bookmark-icon" width="28">
 
         <span class="header__bookmark-counter">{{bookmarks}}</span></a>
     </div>
@@ -43,14 +43,14 @@
             <p class="item__descr">{{ item.content[0:50] + "..." }}</p>
             <div class="item__post-info">
                 <div class="item__counter">
-                    <img src="../../static/img/eye.png" alt="" class="item__counter-icon" width="26">
+                    <img src="./static/img/eye.png" alt="" class="item__counter-icon" width="26">
                     <span class="item__counter-text">{{ item.views_count }}</span>
                 </div>
             </div>
             <div class="item__post-bottom">
                 <a href="/post/{{ item.pk }}" class="item__btn-more">Подробнее</a>
                 <a href="/bookmarks/add/{{item.pk}}" type="button" class="item__bookmark-btn">
-                    <img src="../../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+                    <img src="./static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
                 </a>
             </div>
         </div>
